@@ -6,7 +6,7 @@ namespace DataStructuresAlgorithms
     {
         static void Main()
         {
-            Console.WriteLine("Data STructures and Algorithm Repository.");
+            Console.WriteLine("Data Structures and Algorithm Repository.");
         }
     }
 }
