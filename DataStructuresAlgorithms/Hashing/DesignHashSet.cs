@@ -17,11 +17,12 @@ namespace DataStructuresAlgorithms
 
         /** Initialize your data structure here. */
         private const int deleted = -1;
+        const int size = 10007;
         private int[] hashTable;
         public MyHashSet()
         {
-            hashTable = new int[10000];
-            for (int i = 0; i < 10000; i++)
+            hashTable = new int[size];
+            for (int i = 0; i < size; i++)
                 hashTable[i] = int.MinValue;
         }
 
@@ -82,8 +83,10 @@ namespace DataStructuresAlgorithms
 
         private int HashFunction(int key, int collison = 0)
         {
-            key = ((key / 10000) + (key % 10000)) % 10000;
-            return (key + collison) % 10000;
+            key = ((key / size) + (key % size)) % size;
+            return (key + collison) % size;
+
+            //return ((key%size)+collison) % size;
         }
     }
 }
