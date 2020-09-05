@@ -99,44 +99,45 @@ namespace DataStructuresAlgorithms.Collections
 
         public IEnumerator<T> GetEnumerator()
         {
-            for (int i = Count - 1; i >= 0; i--)
-            {
-                yield return list[i];
-            }
-            //return new Enumerator(this);
+            //for (int i = Count - 1; i >= 0; i--)
+            //{
+            //    yield return list[i];
+            //}
+            return new Enumerator(this);
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return GetEnumerator();
-            //return new Enumerator(this);
+            //return GetEnumerator();
+            return new Enumerator(this);
         }
 
         #region IEnumerator implementation
-        public class Enumerator : IEnumerator<T>, IEnumerator
+        public struct Enumerator : IEnumerator<T>, IEnumerator
         {
             int currentIndex;
             Stack<T> stack;
-            T item;
+            private T current;
             public Enumerator(Stack<T> stack)
             {
                 this.stack = stack;
                 currentIndex = stack.Count;
+                current = default(T);
             }
-            public object Current => item;
+            public object Current => current;
 
-            T IEnumerator<T>.Current => item;
+            T IEnumerator<T>.Current => current;
 
             public void Dispose()
             {
-                //Implement Dispose
+                
             }
 
             public bool MoveNext()
             {
                 if (--currentIndex >= 0)
                 {
-                    item = stack.list[currentIndex];
+                    current = stack.list[currentIndex];
                     return true;
                 }
                 else
